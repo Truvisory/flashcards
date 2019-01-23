@@ -7,7 +7,7 @@ const Card = (props) => {
         <div className="card mx-auto">
           <div className="card-body">
             <h2 className="card-title">Description</h2>
-            <p className="card-text">creates a new array with the results of calling a provided function on every element in the calling array.</p>
+            <p className="card-text">{props.methods[0].description}</p>
           </div>
         </div>
       </div>

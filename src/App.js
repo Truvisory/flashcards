@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './components/Header'
 import Card from './components/Card'
 import Input from './components/Input'
+import Difficulty from './components/Difficulty'
 
 class App extends Component {
   constructor(){
@@ -47,7 +48,8 @@ class App extends Component {
     return (
       <div className="container">
         <Header />
-        <Card />
+        <Card methods={this.state.methods}/>
+        <Difficulty />
         <Input />
       </div>
     );

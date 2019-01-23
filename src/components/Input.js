@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Input = (props) => {
+const Input = () => {
   return (
     <form className="row justify-content-center mt-4">
       <div className="input-group col-lg-6">

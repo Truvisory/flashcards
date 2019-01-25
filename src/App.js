@@ -6,6 +6,7 @@ import Loader from 'react-loader-spinner'
 import Correct from './components/Correct'
 import Incorrect from './components/Incorrect'
 import Progress from './components/Progress'
+import Submit from './components/Submit'
 const url = 'http://localhost:3000/'
 
 class App extends Component {
@@ -16,7 +17,8 @@ class App extends Component {
         index: 0,
         correct: '',
         correctIndex: '',
-        correctNumber: 0
+        correctNumber: 0,
+        display: 'd-none'
       }
   }
   async componentDidMount() {
@@ -47,26 +49,53 @@ class App extends Component {
     }
   }
 
+  create = () => this.setState({display: "mt-4"})
+  submitNew = async (event) => {
+    await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        "name": event.target[0].value,
+        "description": event.target[1].value,
+        "example": event.target[2].value,
+        "tags": "tag",
+        "link": event.target[3].value
+      })
+    })
+  }
+
   render() {
     let corNum = this.state.correctNumber / this.state.methods.length *100
     return (
       <div className="container">
         <Header />
         {this.state.methods[0]
-          ? <Card state={this.state}/>
+          ? <div><Card state={this.state}/>
+            {this.state.correctNumber !== 0
+              ? <Progress 
+                state={this.state}
+                corNum={corNum} />
+              : <div></div> }</div>
           : <div className="row justify-content-center">
               <Loader type="Triangle" color="#00BFFF" height="100" width="100"/>
             </div>}
         {/* <Difficulty /> */}
-        <Progress 
+        {/* <Progress 
           state={this.state}
-          corNum={corNum} />
+          corNum={corNum} /> */}
         <Input check={this.check}/>
         {this.state.correct === 'Correct'
           ? <Correct state={this.state}/>
           : this.state.correct === 'Incorrect'
             ? <Incorrect />
             : <div></div> }
+        <Submit 
+          submitNew={this.submitNew}
+          display={this.state.display} 
+          create={this.create}/>
       </div>
     );
   }

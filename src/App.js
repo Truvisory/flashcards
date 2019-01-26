@@ -70,15 +70,16 @@ class App extends Component {
   render() {
     let corNum = this.state.correctNumber / this.state.methods.length *100
     return (
-      <div className="container">
-        <Header />
-        {this.state.methods[0]
-          ? <div><Card state={this.state}/>
-            {this.state.correctNumber !== 0
+      <div className="container-fluid">
+      {this.state.correctNumber !== 0
               ? <Progress 
                 state={this.state}
                 corNum={corNum} />
-              : <div></div> }</div>
+              : <div></div> }
+        <Header />
+        {this.state.methods[0]
+          ? <div><Card state={this.state}/>
+            </div>
           : <div className="row justify-content-center">
               <Loader type="Triangle" color="#00BFFF" height="100" width="100"/>
             </div>}

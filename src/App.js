@@ -17,8 +17,7 @@ class App extends Component {
         index: 0,
         correct: '',
         correctIndex: '',
-        correctNumber: 0,
-        display: 'd-none'
+        correctNumber: 0
       }
   }
   async componentDidMount() {
@@ -49,8 +48,8 @@ class App extends Component {
     }
   }
 
-  create = () => this.setState({display: "mt-4"})
-  submitNew = async (event) => {
+  submitNew = async (event) => {event.preventDefault()
+    console.log(event.target[0].value)
     await fetch(url, {
       method: "POST",
       headers: {
@@ -94,9 +93,7 @@ class App extends Component {
             ? <Incorrect />
             : <div></div> }
         <Submit 
-          submitNew={this.submitNew}
-          display={this.state.display} 
-          create={this.create}/>
+          submitNew={this.submitNew} />
       </div>
     );
   }

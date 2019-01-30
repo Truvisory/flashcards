@@ -7,7 +7,7 @@ import Correct from './components/Correct'
 import Incorrect from './components/Incorrect'
 import Progress from './components/Progress'
 import Submit from './components/Submit'
-const url = 'http://localhost:3000/'
+const url = 'http://localhost:3001/'
 
 class App extends Component {
   constructor(){
@@ -48,8 +48,7 @@ class App extends Component {
     }
   }
 
-  submitNew = async (event) => {event.preventDefault()
-    console.log(event.target[0].value)
+  submitNew = async (event) => {
     await fetch(url, {
       method: "POST",
       headers: {
@@ -66,6 +65,10 @@ class App extends Component {
     })
   }
 
+  update = (e) => {e.preventDefault()
+    console.log(e.target[0].value)
+  }
+
   render() {
     let corNum = this.state.correctNumber / this.state.methods.length *100
     return (
@@ -77,7 +80,10 @@ class App extends Component {
               : <div></div> }
         <Header />
         {this.state.methods[0]
-          ? <div><Card state={this.state}/>
+          ? <div>
+              <Card 
+                state={this.state}
+                update={this.update}/>
             </div>
           : <div className="row justify-content-center">
               <Loader type="Triangle" color="#00BFFF" height="100" width="100"/>

@@ -17,7 +17,8 @@ class App extends Component {
         index: 0,
         correct: '',
         correctIndex: '',
-        correctNumber: 0
+        correctNumber: 0,
+        updateDescription: false
       }
   }
   async componentDidMount() {
@@ -35,6 +36,9 @@ class App extends Component {
       },
       body: JSON.stringify(body)
     })
+      // const response = await fetch(url)
+      // const json = await response.json()
+      // this.setState({methods: json})
   }
 
   submitNew = (e) => {e.preventDefault()
@@ -110,10 +114,14 @@ class App extends Component {
   update = (e) => {e.preventDefault()
     const updateDescription = this.state.methods
     updateDescription[this.state.index].description = e.target[0].value
-    this.setState({ methods: updateDescription })
+    this.setState({
+      methods: updateDescription,
+      updateDescription: false})
     this.updateCard(e.target[0].value)
     e.target.reset()
   }
+
+  updateToggle = () => this.setState({updateDescription: !this.state.updateDescription})
 
   delete = () => {
     const deleteCard = this.state.methods.filter(card => card.id !== this.state.methods[this.state.index].id)
@@ -128,8 +136,9 @@ class App extends Component {
   }
 
   decrement = () => {
-    if(this.state.index === 0) this.setState({ index: this.state.methods.length - 1})
-    else this.setState({ index: this.state.index - 1})
+    this.state.index === 0
+      ? this.setState({ index: this.state.methods.length - 1})
+      : this.setState({ index: this.state.index - 1})
   }
 
   render() {
@@ -150,7 +159,8 @@ class App extends Component {
                 textInput={this.textInput}
                 delete={this.delete}
                 increment={this.increment}
-                decrement={this.decrement}/>
+                decrement={this.decrement}
+                updateToggle={this.updateToggle}/>
             </div>
           : <div className="row justify-content-center">
               <Loader type="Triangle" color="#00BFFF" height="100" width="100"/>

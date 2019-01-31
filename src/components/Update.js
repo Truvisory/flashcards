@@ -3,9 +3,9 @@ import React from 'react';
 const Update = (props) => {
   return (
     <form
-      className="row mt-2"
+      className="row mb-2"
       onSubmit={props.update}>
-      <div className="input-group col-lg-12 ">
+      <div className="input-group col-lg-12">
         <textarea
           type="text"
           className="form-control border-success"
@@ -15,9 +15,16 @@ const Update = (props) => {
           onChange={props.textInput}/>
         <div className="input-group-append">
           <button
-            className="btn btn-outline-success"
+            className="btn btn-success"
             type="submit"
             id="button-addon2">Update</button>
+        </div>
+        <div className="input-group-append">
+          <button
+            className="btn btn-outline-secondary"
+            type="button"
+            id="button-addon2"
+            onClick={props.updateToggle}>X</button>
         </div>
       </div>
     </form>

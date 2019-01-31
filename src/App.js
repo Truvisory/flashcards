@@ -26,21 +26,28 @@ class App extends Component {
     this.setState({methods: json}) 
   }
 
-  submitNew = async (e) => {
+  newCard = async (body) => {
     await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json"
       },
-      body: JSON.stringify({
-        "name": e.target[0].value,
-        "description": e.target[1].value,
-        "example": e.target[2].value,
-        "tags": "tag",
-        "link": e.target[3].value
-      })
+      body: JSON.stringify(body)
     })
+  }
+
+  submitNew = (e) => {e.preventDefault()
+    let body = {
+      "name": e.target[0].value,
+      "description": e.target[1].value,
+      "example": e.target[2].value,
+      "tags": "tag",
+      "link": e.target[3].value
+    }
+    this.setState({methods: [body, ...this.state.methods]})
+    this.newCard(body)
+    e.target.reset()
   }
 
   updateCard = async (updatedDescription) => {

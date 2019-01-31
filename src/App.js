@@ -109,7 +109,16 @@ class App extends Component {
     // this.updates(arrId, "delete")
   }
 
-  increment
+  increment = () => {
+    if(this.state.index !== this.state.methods.length - 1) this.setState({ index: this.state.index + 1})
+    if(this.state.methods.length - 1 === this.state.index) this.setState({ index: 0})
+  }
+
+  decrement = () => {
+    if(this.state.index === 0) this.setState({ index: this.state.methods.length - 1})
+    else this.setState({ index: this.state.index - 1})
+  }
+
   render() {
     let corNum = this.state.correctNumber / this.state.methods.length * 100
     return (
@@ -126,7 +135,9 @@ class App extends Component {
                 state={this.state}
                 update={this.update}
                 textInput={this.textInput}
-                delete={this.delete}/>
+                delete={this.delete}
+                increment={this.increment}
+                decrement={this.decrement}/>
             </div>
           : <div className="row justify-content-center">
               <Loader type="Triangle" color="#00BFFF" height="100" width="100"/>

@@ -14,8 +14,8 @@ const Card = (props) => {
             <div className="row">
               <div className="col-6">
                 <div className="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" className="btn btn-secondary">⇦</button>
-                    <button type="submit" className="btn btn-secondary mr-3">⇨</button>
+                    <button type="button" className="btn btn-secondary" onClick={props.decrement}>⇦</button>
+                    <button type="submit" className="btn btn-secondary mr-3" onClick={props.increment}>⇨</button>
                 </div>
                 <div className="btn-group" role="group" aria-label="Basic example">
                   <Link to="/update/" className="btn-group">

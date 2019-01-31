@@ -88,7 +88,7 @@ class App extends Component {
     updateDescription[this.state.index].description = e.target.value
     this.setState({ methods: updateDescription })
   }
-  
+
   update = (e) => {e.preventDefault()
     const updateDescription = this.state.methods
     updateDescription[this.state.index].description = e.target[0].value
@@ -97,6 +97,19 @@ class App extends Component {
     e.target.reset()
   }
 
+  delete = () => {
+    const deleteCard = this.state.methods.filter(card => card.id !== this.state.methods[this.state.index].id)
+    console.log(deleteCard)
+    this.setState({ methods: deleteCard})
+    // const selectedMessages = this.state.messages.filter(message => {
+    //   if (message.selected === true) arrId.push(message.id)
+    //   return !message.selected === true
+    // })
+    // this.setState({ messages: selectedMessages })
+    // this.updates(arrId, "delete")
+  }
+
+  increment
   render() {
     let corNum = this.state.correctNumber / this.state.methods.length * 100
     return (
@@ -112,7 +125,8 @@ class App extends Component {
               <Card 
                 state={this.state}
                 update={this.update}
-                textInput={this.textInput}/>
+                textInput={this.textInput}
+                delete={this.delete}/>
             </div>
           : <div className="row justify-content-center">
               <Loader type="Triangle" color="#00BFFF" height="100" width="100"/>

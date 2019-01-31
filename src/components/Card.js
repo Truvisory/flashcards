@@ -14,10 +14,14 @@ const Card = (props) => {
             <div className="row">
               <div className="col-6">
                 <div className="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" className="btn btn-secondary">⇦</button>
+                    <button type="submit" className="btn btn-secondary mr-3">⇨</button>
+                </div>
+                <div className="btn-group" role="group" aria-label="Basic example">
                   <Link to="/update/" className="btn-group">
                     <button type="button" className="btn btn-outline-success">Update</button>
                   </Link>
-                    <button type="button" className="btn btn-outline-secondary">X</button>
+                    <button type="submit" className="btn btn-outline-secondary" onClick={props.delete}>X</button>
                 </div>
               </div>
             </div>

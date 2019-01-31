@@ -14,7 +14,10 @@ const Update = (props) => {
           value={props.state.methods[props.state.index].description}
           onChange={props.textInput}/>
         <div className="input-group-append">
-          <button className="btn btn-outline-success" type="submit" id="button-addon2">Submit</button>
+          <button
+            className="btn btn-outline-success"
+            type="submit"
+            id="button-addon2">Submit</button>
         </div>
       </div>
     </form>

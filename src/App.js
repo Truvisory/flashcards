@@ -61,6 +61,17 @@ class App extends Component {
     })
   }
 
+  deleteCard = async () => {
+    await fetch(`${url}she-gone/${this.state.methods[this.state.index].id}`, {
+      method: 'DELETE',
+      body: JSON.stringify({ "id": this.state.methods[this.state.index].id }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+  }
+
   check = (e) => {e.preventDefault()
     if(e.target[0].value === this.state.methods[this.state.index].name) {
       this.setState({
@@ -99,14 +110,9 @@ class App extends Component {
 
   delete = () => {
     const deleteCard = this.state.methods.filter(card => card.id !== this.state.methods[this.state.index].id)
-    console.log(deleteCard)
+    if(this.state.methods.length - 1 === this.state.index) this.setState({ index: this.state.index - 1})
     this.setState({ methods: deleteCard})
-    // const selectedMessages = this.state.messages.filter(message => {
-    //   if (message.selected === true) arrId.push(message.id)
-    //   return !message.selected === true
-    // })
-    // this.setState({ messages: selectedMessages })
-    // this.updates(arrId, "delete")
+    this.deleteCard()
   }
 
   increment = () => {

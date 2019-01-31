@@ -17,7 +17,7 @@ const Update = (props) => {
           <button
             className="btn btn-outline-success"
             type="submit"
-            id="button-addon2">Submit</button>
+            id="button-addon2">Update</button>
         </div>
       </div>
     </form>

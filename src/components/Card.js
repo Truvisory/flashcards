@@ -24,7 +24,9 @@ const Card = (props) => {
             <Route 
               path="/update/"
               render={() => 
-                <Update update={props.update}/>} 
+                <Update
+                  update={props.update}
+                  state={props.state}/>} 
                 />
           </div>
         </div>

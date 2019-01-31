@@ -66,7 +66,20 @@ class App extends Component {
   }
 
   update = (e) => {e.preventDefault()
-    console.log(e.target[0].value)
+    const updateDescription = this.state.methods
+    updateDescription[this.state.index].description = e.target[0].value
+    this.setState({ methods: updateDescription })
+      // this.sendMessage(newMessage.subject, newMessage.body)
+    // e.target.reset()
+        // let updatedCard = {
+    //   description: e.target[0].value,
+    //   id: this.state.methods[this.state.index].id,
+    //   example: this.state.methods[this.state.index].example,
+    //   link: this.state.methods[this.state.index].link,
+    //   name: this.state.methods[this.state.index].name,
+    //   tags: this.state.methods[this.state.index].tags
+    // }
+    // this.setState({methods: [updatedCard, ...this.state.methods]})
   }
 
   render() {

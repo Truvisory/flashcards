@@ -26,7 +26,8 @@ const Card = (props) => {
               render={() => 
                 <Update
                   update={props.update}
-                  state={props.state}/>} 
+                  state={props.state}
+                  textInput={props.textInput}/>} 
                 />
           </div>
         </div>
